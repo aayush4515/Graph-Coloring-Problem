@@ -7,6 +7,8 @@
 using namespace std;
 
 int main() {
+   
+    
     string inputFilename;
     cout << "Enter the filename containing graph data: ";
     cin >> inputFilename;
@@ -29,13 +31,18 @@ int main() {
     }
 
     cout << "Number of Colors: " << myGraph.getColorCount() << endl;
+ 
+    
     cout << "Number of Vertices: " << myGraph.getVertexCount() << endl << endl;
+    
     myGraph.printGraph();
 
     MyGraphColoring myGraphColoring(myGraph);
 
     if (!myGraphColoring.performGraphColoring(myGraph.getColorCount())) {
+     
         cerr << "Failed to perform graph coloring." << endl;
+        
         return 1;
     }
 
