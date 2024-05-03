@@ -10,6 +10,10 @@ class Graph {
 
 public:
 
+    Graph() {
+        solutionFound = false;
+    }
+
     void read(ifstream &infile) {
         int numColors = 0;
         int numV = 0;
@@ -24,8 +28,7 @@ public:
         this->numColors = numColors;
 
         adjMatrix = vector<vector<bool>>(numVertices, vector<bool>(numVertices, false));
-        vcolor = vector<int>(numVertices, 0);
-        vcolor[0] = 1;
+        vcolor = vector<int>(numVertices, -1);
 
         infile >> ignore >> first >> second >> ignore;
         while (first != -1)
@@ -42,33 +45,33 @@ public:
         }
     }
 
+    void mColoring(int currVertex) {
 
-    void mColoring(int i) {
-        if (promising(i)) {
-            if (i + 1 == numVertices) {
-                print();
-            }
-            else {
-                for (int color = 1; color <= numColors; color++) {
-                    vcolor[i + 1] = color;
-                    mColoring(i + 1);
-                }
+        if (solutionFound) {
+            return;
+        }
+
+        if (currVertex == numVertices) {
+            solutionFound = true;
+            print();
+            return;
+        }
+        for (int color = 1; color <= numColors && !solutionFound; color++) {
+            if(promising(currVertex, color)) {
+                vcolor[currVertex] = color;
+                mColoring(currVertex + 1);
+                //vcolor[currVertex] = -1;
             }
         }
     }
 
-    bool promising(int i) {
-        int j = 1;
-        bool check;
-        check = true;
-
-        while(j < i && check) {
-            if (adjMatrix[i][j] && vcolor[i] == vcolor[j]) {
-                check = false;
+    bool promising(int currVertex, int color) {
+        for (int i = 0; i < numVertices; i++) {
+            if (adjMatrix[currVertex][i] && vcolor[i] == color) {
+                return false; // Adjacent vertex has the same color
             }
-            j++;
         }
-        return check;
+        return true;
     }
 
 
@@ -77,4 +80,5 @@ private:
     int numColors;
     vector<vector<bool>> adjMatrix;
     vector<int> vcolor;
+    bool solutionFound;
 };
