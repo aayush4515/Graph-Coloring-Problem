@@ -40,8 +40,10 @@ public:
     }
 
     void print() {
-        for (unsigned int i = 0; i < numVertices; i++) {
-            cout << i << " : " << vcolor[i] << endl;
+        if (solutionFound) {
+            for (unsigned int i = 0; i < numVertices; i++) {
+                cout << i << " : " << vcolor[i] << endl;
+            }
         }
     }
 
@@ -62,6 +64,10 @@ public:
                 mColoring(currVertex + 1);
                 //vcolor[currVertex] = -1;
             }
+        }
+        // If back at the start and no solution found, print the failure message
+        if (currVertex == 0 && !solutionFound) {
+            cout << "No color assignment possible." << endl;
         }
     }
 

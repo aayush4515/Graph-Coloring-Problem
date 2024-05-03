@@ -22,6 +22,7 @@ int main() {
     graph.read(file);
     file.close();
     graph.mColoring(0);
+    //graph.print();
 
     // print graph to test the adjacency matrix
     //graph.print();
