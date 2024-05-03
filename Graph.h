@@ -55,12 +55,13 @@ public:
         vcolor = vector<int>(numVertices, -1);
 
         cin >> ignore >> first >> second >> ignore; // priming read
-        // if edge found between two vertice i and j, set adjMatrix[i][j] and adjMatrix[j][i] to true
+
+        // check if no vertex exists
         if (first == -1) {
             cout << "Not a graph" << endl;
             return;
         }
-
+        // if edge found between two vertices i and j, set adjMatrix[i][j] and adjMatrix[j][i] to true
         while (first != -1) {
             adjMatrix[first][second] = true;
             adjMatrix[second][first] = true;
