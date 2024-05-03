@@ -13,9 +13,13 @@ graph2:
 3 : 2
 4 : 3
 
-graph3.txt:
+graph3:
 
 0 : 1
 1 : 2
 2 : 3
 3 : 2
+
+graph4:
+
+No color assignment possible.
