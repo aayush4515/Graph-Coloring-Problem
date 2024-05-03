@@ -12,6 +12,11 @@ int main() {
     // read the input
     graph.read();
 
+    // terminate program if the graph is empty
+    if (!graph.isGraphValid()) {
+        return 1;
+    }
+
     // color the graph
     graph.mColoring(0);
 

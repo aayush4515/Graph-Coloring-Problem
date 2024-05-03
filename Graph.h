@@ -10,9 +10,7 @@ class Graph {
 public:
 
     // default constructor
-    Graph() {
-        solutionFound = false;
-    }
+    Graph() : solutionFound(false), isGraph(false) {}
 
     // interface to read in the graph data into an adjacent matrix from an input file name
     /*
@@ -57,16 +55,21 @@ public:
         cin >> ignore >> first >> second >> ignore; // priming read
 
         // check if no vertex exists
-        if (first == -1) {
-            cout << "Not a graph" << endl;
+        if (numVertices == 0 || first == -1) {
+            cout << "Empty Graph" << endl;
             return;
         }
+
+
         // if edge found between two vertices i and j, set adjMatrix[i][j] and adjMatrix[j][i] to true
         while (first != -1) {
             adjMatrix[first][second] = true;
             adjMatrix[second][first] = true;
             cin >> ignore >> first >> second >> ignore;
         }
+
+        // if the graph is not empty, return true
+        isGraph = true;
     }
 
     // prints the color assignment for one solution
@@ -114,10 +117,13 @@ public:
         return true;
     }
 
+    bool isGraphValid() const {return isGraph;}
+
 private:
     int numVertices;
     int numColors;
     vector< vector<bool> > adjMatrix;
     vector<int> vcolor;
     bool solutionFound;
+    bool isGraph;
 };
