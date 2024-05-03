@@ -56,8 +56,12 @@ public:
 
         cin >> ignore >> first >> second >> ignore; // priming read
         // if edge found between two vertice i and j, set adjMatrix[i][j] and adjMatrix[j][i] to true
-        while (first != -1)
-        {
+        if (first == -1) {
+            cout << "Not a graph" << endl;
+            return;
+        }
+
+        while (first != -1) {
             adjMatrix[first][second] = true;
             adjMatrix[second][first] = true;
             cin >> ignore >> first >> second >> ignore;

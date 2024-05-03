@@ -6,7 +6,7 @@
 
 int main() {
 
-    // create the graph object
+    // create a graph object
     Graph graph;
 
     // read the input
