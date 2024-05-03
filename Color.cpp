@@ -12,8 +12,7 @@ int main() {
     ifstream file(filename);
 
     // check if the file can't be opened
-    if (!file.is_open())
-    {
+    if (!file.is_open()) {
         cerr << "Failed to open file: " << filename << endl;
         return 1;     // return an error code
     }
@@ -21,11 +20,9 @@ int main() {
     // reads the file content once open
     graph.read(file);
     file.close();
-    graph.mColoring(0);
-    //graph.print();
 
-    // print graph to test the adjacency matrix
-    //graph.print();
+    // color the graph
+    graph.mColoring(0);
 
     return 0;
 }
